@@ -1,5 +1,5 @@
 import sqlite3
-from tkinter import *
+
 
 class MenuItem: #메뉴
     def __init__(self, pno, name, imagePath, price):
@@ -15,8 +15,12 @@ class MemberItem: #회원정보
         self.money = money #유저 머니
 """
 
-class DBConnection: #DB(임시로 클래스로 정의) -> DB.db로 연결
+class Database: #DB(임시로 클래스로 정의) -> DB.db로 연결
     def __init__(self):
+        pass
+        #self.__memberList = {1234: MemberItem(1234, '철수', 100000), 5678: MemberItem(5678, '영이', 4000)} #
+
+    def getMenuList(self): #menu list 불러오기
         self.conn = sqlite3.connect("DB.db")
         self.cur = self.conn.cursor()
         self.__menuList = []
@@ -25,9 +29,6 @@ class DBConnection: #DB(임시로 클래스로 정의) -> DB.db로 연결
         for menuData in menuDatas:
             self.__menuList.append(MenuItem(menuData[0], menuData[1], menuData[2], menuData[3]))
         self.conn.close()
-        #self.__memberList = {1234: MemberItem(1234, '철수', 100000), 5678: MemberItem(5678, '영이', 4000)} #
-
-    def getMenuList(self): #menu list 불러오기
         return self.__menuList
 
     def getUserChargedMoney(self, userId):
@@ -87,8 +88,6 @@ class UIMaker: # UI 라이브러리 사용
         if answer == 'Y' or answer == 'y':
             return True
         else:
-            print("결제가 취소되었습니다.")
-            print()
             return False
 
     def makeError(self):
@@ -125,15 +124,13 @@ class Pay:
             chargedMoney -= totalPrice #결제(유저머니  차감) user.money-> chargedMoney
             return chargedMoney # return값 수정
 
-
+'''
 class InterfacePage:
-    def __init__(self):
-            root=tkinter.Tk()
-
+'''
 
 class Controller:
     def __init__(self):
-        self.DB = DBConnection()
+        self.DB = Database()
         self.UIM = UIMaker()
         self.OS = OrderStorage()
         self.pay = Pay() # (instance를 private으로...)
