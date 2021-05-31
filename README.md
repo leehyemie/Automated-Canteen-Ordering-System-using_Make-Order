@@ -19,3 +19,7 @@
 * [DB.db](https://github.com/leehyemie/Automated-Canteen-Ordering-System-using_Make-Order/blob/main/make%20order/DB.db)
 
 
+* 승규: DB 생성 및 연결, 전반적인 UI 구현
+* 혜미: 전반적인 Program 구현, 부분적으로 UI 추가
+
+
