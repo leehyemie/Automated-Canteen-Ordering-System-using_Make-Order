@@ -230,32 +230,6 @@ class UIMaker:  # tkinter 사용
         # print("output: ", output)
         return output[0]
 
-        '''
-        noticeWindow = Tk()
-        noticeWindow.title("ID 입력")
-        noticeWindow.geometry("250x160+300+300")
-        noticeWindow.resizable(False, False)
-
-
-
-        def click():
-            return int(id.get())
-
-        label = Label(noticeWindow, text = '   ID를 입력하세요.')
-        label.grid(row = 0, column = 3)
-
-        id = StringVar()
-        inputID = Entry(noticeWindow, width = 15, textvariable = id)
-        inputID.grid(row = 1, column = 3)
-        button = Button(noticeWindow, text = '입력', command= click)
-        button.grid(row = 1, column = 4)
-        #strID = inputID.get()
-        #intID = int(strID)
-        noticeWindow.destroy()
-        menuWindow.mainloop()
-        #return intID
-'''
-
 
 class OrderStorage:
     def saveCustomerOrder(self, pnoList, menuList):
@@ -328,15 +302,11 @@ class Controller:
         self.DB = DBConnection()
         self.UIM = UIMaker()
         self.OS = OrderStorage()
-        self.pay = Pay()  # (instance를 private으로...)
+        self.pay = Pay()
 
     def getMenuList(self):  # DB에서 메뉴 리스트 불러오기
         menuList = self.DB.getMenuList()
         return menuList
-
-    # def getMemberList(self):
-    # memberList = self.DB.getMemberList()
-    # return memberList
 
     def getUserChargedMoney(self, userId):
         userChargedMoney = self.DB.getUserChargedMoney(userId)
